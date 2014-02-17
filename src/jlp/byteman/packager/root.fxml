@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet packager.css?>
+<?scenebuilder-stylesheet caspian.css?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" id="AnchorPane" fx:id="start" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1269.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="jlp.byteman.packager.Packager">
+  <children>
+    <Group id="Group" autoSizeChildren="true" layoutX="0.0" layoutY="5.0" scaleX="1.0" scaleY="1.0">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="31.0" prefHeight="31.0" prefWidth="1269.0" snapToPixel="true">
+          <children>
+            <MenuBar minHeight="30.999900000002526" minWidth="-Infinity" prefHeight="36.0" prefWidth="758.0" style="" styleClass="my-menu-bar" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="-4.0">
+              <menus>
+                <Menu id="" mnemonicParsing="false" style="" styleClass="my-menu" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#createProject" styleClass="my-menu" text="Create Project" fx:id="miCreateProject" />
+                    <MenuItem mnemonicParsing="false" onAction="#openProject" styleClass="my-menu" text="Open Project" fx:id="miOpenProject" />
+                    <MenuItem mnemonicParsing="false" onAction="#closeProject" styleClass="my-menu" text="Close Project" fx:id="miCloseProject" />
+                    <MenuItem mnemonicParsing="false" onAction="#exit" styleClass="my-menu" text="Exit" fx:id="miExit" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Networking">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#uploadsOnly" styleClass="my-menu" text="Uploads Only" />
+                    <MenuItem mnemonicParsing="false" onAction="#downloadsOnly" styleClass="my-menu" text="Downloads Only" />
+                    <MenuItem mnemonicParsing="false" onAction="#chainingCmds" styleClass="my-menu" text="Chaining cmds" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Charting">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#viewStaticCsv" styleClass="my-menu" text="Viewer" />
+                    <MenuItem mnemonicParsing="false" onAction="#viewDynCsv" styleClass="my-menu" text="Dyn Viewer" />
+                  </items>
+                </Menu>
+                <Menu id="mHelp" mnemonicParsing="false" onAction="#help" styleClass="my-menu" text="About" visible="true" fx:id="mHelp">
+                  <items>
+                    <MenuItem mnemonicParsing="false" styleClass="my-menu" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+              <stylesheets>
+                <URL value="@packager.css" />
+              </stylesheets>
+            </MenuBar>
+          </children>
+          <stylesheets>
+            <URL value="@packager.css" />
+          </stylesheets>
+        </AnchorPane>
+        <AnchorPane fx:id="work" focusTraversable="true" layoutX="0.0" layoutY="31.0" minHeight="613.0" prefHeight="613.0" prefWidth="1269.0">
+          <children>
+            <TabPane fx:id="tabPane" disable="false" focusTraversable="true" prefHeight="627.0" prefWidth="1269.0" tabClosingPolicy="UNAVAILABLE" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab id="tabCfg" fx:id="tabCfg" styleClass="my-buttons, my-tabs" text="Configuration">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="685.0" prefWidth="1269.0">
+                      <children>
+                        <AnchorPane id="AnchorPane" fx:id="tadir" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="739.0" prefWidth="1269.0" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="6.5" AnchorPane.rightAnchor="-6.5" AnchorPane.topAnchor="-20.5">
+                          <children>
+                            <AnchorPane id="AnchorPane" layoutY="268.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="126.0">
+                              <children>
+                                <TextField id="repInstall" fx:id="tfDirWork" layoutX="147.0" layoutY="49.0" prefWidth="534.0" promptText="Directory of install in remote servers" styleClass="my-tfta" text="/tmp">
+                                  <stylesheets>
+                                    <URL value="@packager.css" />
+                                  </stylesheets>
+                                </TextField>
+                                <Label labelFor="$tfDirWork" layoutX="0.0" layoutY="49.0" text="Install Dir">
+                                  <font>
+                                    <Font size="20.0" fx:id="x2" />
+                                  </font>
+                                </Label>
+                                <Label font="$x2" layoutX="0.0" layoutY="86.0" prefHeight="36.0" text="Logs Dir">
+                                  <labelFor>
+                                    <TextField id="repInstall" layoutX="415.0" layoutY="268.0" prefWidth="345.0" />
+                                  </labelFor>
+                                </Label>
+                                <TextField id="repInstall" fx:id="tfDirLogs" layoutX="147.0" layoutY="88.0" prefWidth="531.0" promptText="Logs directory on remote servers" styleClass="my-tfta" text="/tmp">
+                                  <stylesheets>
+                                    <URL value="@packager.css" />
+                                  </stylesheets>
+                                </TextField>
+                                <Label font="$x2" layoutX="0.0" layoutY="129.0" text="CSV Separator" />
+                                <TextField id="repInstall" fx:id="tfCsv" layoutX="147.0" layoutY="130.0" prefWidth="43.000244140625" promptText="Csv separator" styleClass="my-tfta" text=";">
+                                  <stylesheets>
+                                    <URL value="@packager.css" />
+                                  </stylesheets>
+                                </TextField>
+                                <CheckBox fx:id="fullPackage" font="$x2" layoutX="377.0" layoutY="0.0" mnemonicParsing="false" text="Full package for agent ?" />
+                              </children>
+                            </AnchorPane>
+                            <HBox id="HBox" alignment="CENTER" layoutX="122.0" layoutY="278.0" spacing="5.0" />
+                            <Label layoutY="119.0" prefWidth="372.0" text="Packaging Byteman Rules" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.rightAnchor="442.0">
+                              <font>
+                                <Font name="System Bold" size="24.0" />
+                              </font>
+                            </Label>
+                            <HBox id="HBox" alignment="CENTER" layoutY="460.0" spacing="5.0" AnchorPane.rightAnchor="208.0" />
+                            <CheckBox fx:id="gzip" font="$x2" layoutY="266.0" mnemonicParsing="false" prefWidth="202.0" text="gzip traces ?" AnchorPane.rightAnchor="833.0" />
+                            <MenuButton fx:id="othersConfBut" layoutX="227.0" layoutY="461.0" mnemonicParsing="false" styleClass="my-buttons" text="Others Configurations">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                              </items>
+                              <stylesheets>
+                                <URL value="@packager.css" />
+                              </stylesheets>
+                            </MenuButton>
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="tabCnx" fx:id="tabNet" onSelectionChanged="#fillRules" styleClass="my-tabs" text="Networking cfg">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1269.0">
+                      <children>
+                        <TabPane prefHeight="577.0" prefWidth="1269.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab id="tabCnx" fx:id="tabCnx" styleClass="my-tabs" text="Connections">
+                              <content>
+                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1269.0">
+                                  <children>
+                                    <ScrollPane prefHeight="294.0" prefWidth="1269.0" AnchorPane.bottomAnchor="288.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                                      <content>
+                                        <TableView fx:id="tableCnx" editable="true" onMouseClicked="#deleteCnx" prefHeight="248.0" prefWidth="1269.0" tableMenuButtonVisible="true">
+                                          <columns>
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="ID Server" fx:id="idServer" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="314.0" text="Address Server" fx:id="addrServer" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="76.0" text="Port" fx:id="port" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="238.0" text="Login" fx:id="login" />
+                                            <TableColumn editable="true" maxWidth="5000.0" minWidth="0.0" prefWidth="209.0" text="Password" visible="true" fx:id="password" />
+                                            <TableColumn editable="true" maxWidth="5000.0" minWidth="0.0" prefWidth="243.0" text="RootPassword" visible="true" fx:id="rootpassword" />
+                                          </columns>
+                                        </TableView>
+                                      </content>
+                                    </ScrollPane>
+                                    <Button id="saveCnx" layoutX="135.0" mnemonicParsing="false" onAction="#saveCnx" prefHeight="40.0" text="Save Connections" AnchorPane.topAnchor="475.0">
+                                      <font>
+                                        <Font name="System Bold" size="16.0" fx:id="x1" />
+                                      </font>
+                                    </Button>
+                                    <Button id="addCnx" font="$x1" layoutX="814.0" mnemonicParsing="false" onAction="#addCnx" prefHeight="40.0" text="Add New Cnx" AnchorPane.topAnchor="475.0" />
+                                    <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="29.0" layoutY="311.0" prefWidth="1242.0">
+                                      <children>
+                                        <Label font="$x1" prefWidth="148.0" text="RootPassword" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+                                          <GridPane.margin>
+                                            <Insets />
+                                          </GridPane.margin>
+                                        </Label>
+                                        <Label font="$x1" text="ID Server" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Address  Server" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Port" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Login" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Password" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <TextField id="idServer" fx:id="idServerTf" prefHeight="31.0" prefWidth="174.0" promptText="Id Server" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="addrSrvTf" prefHeight="31.0" prefWidth="174.0" promptText="Addess Server" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="portTf" prefHeight="30.0" prefWidth="376.0" promptText="Port" text="22" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="loginTf" prefHeight="31.0" prefWidth="174.0" promptText="User Login" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <PasswordField id="passordTf" fx:id="passwordTf" prefHeight="31.0" prefWidth="317.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <PasswordField id="rootpassordTf" fx:id="rootPasswordTf" prefHeight="31.0" prefWidth="317.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="187.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.0" minWidth="10.0" prefWidth="395.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="66.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="182.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="219.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="10.0" prefWidth="193.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab id="tabCnx" fx:id="tabUpld" styleClass="my-tabs" text="Uploads">
+                              <content>
+                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1269.0">
+                                  <children>
+                                    <ScrollPane prefHeight="253.0" prefWidth="1267.0" AnchorPane.bottomAnchor="287.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="1.0">
+                                      <content>
+                                        <TableView id="tableCnx" fx:id="tableUpld" editable="true" onMouseClicked="#deleteCnx" prefHeight="245.0" prefWidth="1269.0" tableMenuButtonVisible="true">
+                                          <columns>
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="95.0" text="Flag/Rank" fx:id="rankUpldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="330.0" text="ID Servers" fx:id="idServerUpldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="381.0" text="Local Files" fx:id="localFileUpldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="359.0" text="Remote Directory" fx:id="remoteDirUpldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="96.0" text="Execute ?" fx:id="executeUpldCol" />
+                                          </columns>
+                                        </TableView>
+                                      </content>
+                                    </ScrollPane>
+                                    <Button id="saveCnx" font="$x1" layoutX="135.0" mnemonicParsing="false" onAction="#saveCnx" prefHeight="40.0" text="Save Connections" AnchorPane.topAnchor="475.0" />
+                                    <Button id="addCnx" font="$x1" layoutX="814.0" mnemonicParsing="false" onAction="#addUpld" prefHeight="40.0" text="Add New Upload" AnchorPane.topAnchor="475.0" />
+                                    <GridPane gridLinesVisible="true" layoutX="0.0" layoutY="311.0" prefWidth="1255.0">
+                                      <children>
+                                        <Label font="$x1" text="Rank/Flag" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="ID Servers" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Local Files" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Remote Directory" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Execute ?" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <TextField id="idServer" fx:id="rankTfUpld" prefHeight="31.0" prefWidth="174.0" promptText="Rank or Flag" styleClass="my-menu" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                          <stylesheets>
+                                            <URL value="@packager.css" />
+                                          </stylesheets>
+                                        </TextField>
+                                        <TextField id="idServer" fx:id="idServerTfUpld" prefHeight="31.0" prefWidth="174.0" promptText="Addess Server" styleClass="my-menu" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="localFileTfUpdl" prefHeight="30.0" prefWidth="376.0" promptText="Local file" styleClass="my-menu" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="remoteDirTfUpld" prefHeight="31.0" prefWidth="174.0" promptText="Remote Directory" styleClass="my-menu" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <ComboBox id="cbExecute" fx:id="executeCbUpld" prefWidth="109.0" styleClass="my-menu" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="109.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="310.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="373.0" minWidth="10.0" prefWidth="373.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="354.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="109.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab id="tabCnx" fx:id="tabDwld" styleClass="my-tabs" text="Downloads">
+                              <content>
+                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1269.0">
+                                  <children>
+                                    <ScrollPane prefHeight="253.0" prefWidth="1267.0" AnchorPane.bottomAnchor="287.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="1.0">
+                                      <content>
+                                        <TableView id="tableCnx" fx:id="tableDwld" editable="true" onMouseClicked="#deleteCnx" prefHeight="245.0" prefWidth="1269.0" tableMenuButtonVisible="true">
+                                          <columns>
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="95.0" text="Flag/Rank" fx:id="rankDwldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="260.0" text="ID Servers" fx:id="idServerDwldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="294.0" text="Remote Dir/Files" fx:id="remoteDirFilesDwldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="317.0" text="Local Directory" fx:id="localDirDwldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="101.0" text="How many?" fx:id="howmanyDwldCol" />
+                                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="181.0" text="Action ?" fx:id="actionDwldCol" />
+                                          </columns>
+                                        </TableView>
+                                      </content>
+                                    </ScrollPane>
+                                    <Button id="saveCnx" font="$x1" layoutX="135.0" mnemonicParsing="false" onAction="#saveCnx" prefHeight="40.0" text="Save Connections" AnchorPane.topAnchor="475.0" />
+                                    <Button id="addCnx" font="$x1" layoutX="814.0" mnemonicParsing="false" onAction="#addDwld" prefHeight="40.0" text="Add New Download" AnchorPane.topAnchor="475.0" />
+                                    <GridPane id="howmanyTfDwld" gridLinesVisible="true" layoutX="7.0" layoutY="315.0" prefWidth="1262.0">
+                                      <children>
+                                        <Label font="$x1" text="Rank/Flag" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="ID Servers" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Remote Dir/Files" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" text="Local Directory" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <Label font="$x1" prefWidth="114.0" text="Action ?" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <TextField id="idServer" fx:id="rankTfDwld" prefHeight="30.0" prefWidth="81.0" promptText="Rank/Flag" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="idServerTfDwld" prefHeight="31.0" prefWidth="174.0" promptText="Id Servers" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="remoteDirFilesTfDwld" prefHeight="30.0" prefWidth="376.0" promptText="Remote Dir/Files" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField id="idServer" fx:id="localDirTfDwld" prefHeight="31.0" prefWidth="174.0" promptText="Local Directory" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Label font="$x1" prefWidth="120.0" text="How many?" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+                                        <TextField fx:id="howmanyTfDwld" prefHeight="30.0" prefWidth="132.0" promptText="howmany" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <ComboBox id="executeCbDxld" fx:id="actionCbDwld" prefWidth="168.0" styleClass="my-menu" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="95.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="184.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="359.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="339.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="135.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="171.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="chooseRule" fx:id="chooseRule" onSelectionChanged="#fillRules" styleClass="my-tabs" text="Choose Byteman Rules">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Button font="$x1" layoutX="582.0" layoutY="75.0" mnemonicParsing="false" onAction="#addItem" prefWidth="114.0" text="Add &gt;" />
+                        <Button font="$x1" layoutX="582.0" layoutY="294.0" mnemonicParsing="false" onAction="#remItem" prefWidth="114.0" text="&lt; Rem" />
+                        <Button font="$x1" layoutX="582.0" layoutY="511.0" mnemonicParsing="false" onAction="#remAll" text="&lt; Rem All" />
+                        <VBox id="VBox" alignment="CENTER" layoutY="8.0" prefWidth="488.0" spacing="5.0" AnchorPane.rightAnchor="731.0">
+                          <children>
+                            <Label text="Available Rules">
+                              <font>
+                                <Font name="System Bold" size="20.0" fx:id="x4" />
+                              </font>
+                            </Label>
+                            <ListView fx:id="listView1" cache="false" cacheHint="QUALITY" mouseTransparent="false" onEditStart="#creerCellFactoryListView1" onMouseEntered="#creerCellFactoryListView1" pickOnBounds="false" prefHeight="517.0" prefWidth="488.0" VBox.vgrow="ALWAYS" />
+                          </children>
+                        </VBox>
+                        <VBox id="VBox" alignment="CENTER" layoutY="8.0" prefWidth="508.0" spacing="5.0" AnchorPane.rightAnchor="25.0">
+                          <children>
+                            <Label font="$x4" text="Chosen Rules" />
+                            <ListView fx:id="listView2" onEditStart="#creerCellFactoryListView2" onMouseClicked="#openItem" onMouseEntered="#creerCellFactoryListView2" prefHeight="517.0" prefWidth="508.0" VBox.vgrow="ALWAYS" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab styleClass="my-tabs" text="Generated Properties">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="taGenProps" editable="false" prefHeight="577.0" prefWidth="1269.0" styleClass="my-tareas" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <stylesheets>
+                            <URL value="@packager.css" />
+                          </stylesheets>
+                        </TextArea>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab styleClass="my-tabs" text="Generated Rules">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="taGenRules" editable="false" prefHeight="577.0" prefWidth="1269.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab styleClass="my-tabs" text="Pre-Check Console">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <TextArea id="taGenRules" fx:id="taCheck" editable="false" prefHeight="577.0" prefWidth="1269.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="tabRemoteAction" onSelectionChanged="#fillTabRemoteAction" styleClass="my-tabs" text="Remote Actions">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <Label font="$x1" layoutX="36.0" layoutY="14.0" text="Cmd detect PID" />
+                        <TextField fx:id="cmdPID" layoutX="205.0" layoutY="14.0" prefWidth="994.0" styleClass="my-tfta" text="jps -lv | grep &lt;a-regexp&gt;  | tr -s ' ' | cut -d ' ' -f1" />
+                        <Label font="$x1" layoutX="36.0" layoutY="109.0" text="Server" />
+                        <ComboBox fx:id="cbxRemoteServers" layoutX="36.0" layoutY="134.0" prefWidth="175.0">
+                          <items>
+                            <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                            </FXCollections>
+                          </items>
+                        </ComboBox>
+                        <VBox id="VBox" alignment="TOP_LEFT" layoutX="36.0" layoutY="414.0" prefHeight="151.0" prefWidth="196.0" spacing="10.0" styleClass="box">
+                          <children>
+                            <Label prefHeight="151.0" text="Byteman actions">
+                              <font>
+                                <Font name="System Bold" size="13.0" fx:id="x3" />
+                              </font>
+                            </Label>
+                            <Button fx:id="butInstallByteman" font="$x4" mnemonicParsing="false" onAction="#installByteman" prefWidth="196.0" text="Install" />
+                            <Button id="but" fx:id="butSubmitByteman" font="$x4" mnemonicParsing="false" onAction="#submitByteman" prefWidth="196.0" text="Submit" />
+                            <Button fx:id="butUnsubmitByteman" font="$x4" mnemonicParsing="false" onAction="#unsubmitByteman" prefWidth="196.0" text="UnSubmit" />
+                          </children>
+                          <stylesheets>
+                            <URL value="@caspian.css" />
+                          </stylesheets>
+                        </VBox>
+                        <Label font="$x1" layoutX="778.0" layoutY="137.0" prefWidth="151.0" text="Cmd Console" />
+                        <TextArea fx:id="cmdConsole" layoutX="252.0" layoutY="172.0" prefHeight="391.0" prefWidth="994.0" wrapText="true" />
+                        <VBox id="VBox" alignment="TOP_LEFT" fillWidth="true" layoutX="36.0" layoutY="267.0" prefHeight="130.0" prefWidth="196.0" spacing="10.0">
+                          <children>
+                            <Label font="$x3" text="JMX actions" />
+                            <Button id="butInstallByteman" font="$x1" mnemonicParsing="false" onAction="#flushStreams" prefWidth="196.0" text="Flush Streams" />
+                            <Button id="but" font="$x1" mnemonicParsing="false" onAction="#reopenStreams" prefWidth="196.0" text="Re-open Streams" />
+                            <Button id="butUnsubmitByteman" font="$x1" mnemonicParsing="false" onAction="#activateDeActivateRules" prefWidth="196.0" text="De-Activate Rules" />
+                          </children>
+                        </VBox>
+                        <Button font="$x4" layoutX="937.0" layoutY="124.0" mnemonicParsing="false" onAction="#clearConsole" text="Clear" />
+                        <Label font="$x3" layoutX="36.0" layoutY="188.0" text="Listener Port" />
+                        <TextField id="portTf" fx:id="portListenerTf" layoutX="34.0" layoutY="206.0" prefWidth="99.0" styleClass="my-tfta" text="9091" />
+                        <Label font="$x1" layoutX="36.0" layoutY="67.0" prefWidth="161.0" text="BYTEMAN_OPTS" />
+                        <TextField id="" fx:id="bytemanOptsTf" layoutX="211.0" layoutY="65.0" prefWidth="994.0" styleClass="my-tfta-12" text="org.jboss.byteman.compileToBytecode=true " />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+        <AnchorPane layoutX="0.0" layoutY="630.0" minWidth="299.0" prefHeight="130.0" prefWidth="1269.0">
+          <children>
+            <Button id="btSave" fx:id="bSave" disable="true" layoutY="55.0" mnemonicParsing="false" onAction="#saveConfigurations" styleClass="my-buttons" text="Save Configuration" visible="true" AnchorPane.rightAnchor="733.0">
+              <stylesheets>
+                <URL value="@packager.css" />
+              </stylesheets>
+            </Button>
+            <Button id="saveLocatbut" fx:id="saveLocalbut" disable="true" layoutX="32.0" layoutY="55.0" mnemonicParsing="false" onAction="#saveLocal" styleClass="my-buttons" text="Save Local" />
+            <Button fx:id="bUpload" disable="true" layoutX="694.0" layoutY="55.0" mnemonicParsing="false" onAction="#upload" styleClass="my-buttons" text="Upload mybyteman agent">
+              <stylesheets>
+                <URL value="@packager.css" />
+              </stylesheets>
+            </Button>
+            <Button fx:id="bCancel" layoutX="1100.0" layoutY="55.0" mnemonicParsing="false" onAction="#cancel" styleClass="my-buttons" text="Cancel">
+              <stylesheets>
+                <URL value="@packager.css" />
+              </stylesheets>
+            </Button>
+          </children>
+        </AnchorPane>
+      </children>
+    </Group>
+  </children>
+</fx:root>

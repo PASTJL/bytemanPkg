@@ -1,0 +1,80 @@
+.my-menu {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 12 ;
+}
+#my-menu {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 12 ;
+}
+
+
+.my-menu-bar {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 18 ;
+}
+
+#my-menu-bar {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 18 ;
+}
+#my-text-area {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 14 ;	
+}
+
+#my-labels {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 16 ;	
+}
+
+#my-buttons {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 18 ;	
+}
+
+.my-cbx {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 16 ;	
+}
+.my-buttons {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 18 ;	
+}
+
+.my-tabs {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 16 ;	
+}
+
+#my-messages {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 18 ;		
+}
+
+.my-tfta {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 16 ;	
+}
+
+.my-tfta-12 {
+	-fx-font-family : serif ;
+	-fx-font-weight : bold ;
+	-fx-font-size : 12 ;	
+}
+.my-tareas {
+	-fx-font-family : serif ;
+	-fx-font-weight :  normal ;
+	-fx-font-size : 14 ;	
+}

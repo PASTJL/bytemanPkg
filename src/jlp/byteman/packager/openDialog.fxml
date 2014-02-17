@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="openDialog" fx:id="openDiag" blendMode="MULTIPLY" cache="true" cacheHint="QUALITY" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#initializeCB2" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="jlp.byteman.packager.OpenDialog">
+  <children>
+    <Label layoutY="52.0" text="Open a Project" textAlignment="LEFT" AnchorPane.rightAnchor="210.0">
+      <font>
+        <Font name="Arial Bold" size="20.0" />
+      </font>
+    </Label>
+    <HBox id="HBox" alignment="CENTER" layoutY="145.0" spacing="5.0" AnchorPane.rightAnchor="220.0">
+      <children>
+        <Label text="Existing Projects">
+          <font>
+            <Font name="Arial Black" size="16.0" fx:id="x3" />
+          </font>
+        </Label>
+        <ComboBox fx:id="projectsCB2" editable="false" onAction="#fillSelectedProject" prefWidth="154.0" promptText="List Projects" styleClass="my-cbx" visibleRowCount="20">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+          <stylesheets>
+            <URL value="@packager.css" />
+          </stylesheets>
+        </ComboBox>
+      </children>
+    </HBox>
+    <HBox id="HBox" alignment="CENTER" layoutY="214.0" spacing="5.0" AnchorPane.rightAnchor="146.0">
+      <children>
+        <HBox id="HBox" alignment="CENTER" spacing="5.0">
+          <children>
+            <Label font="$x3" text="Selected Project" />
+          </children>
+        </HBox>
+        <TextField fx:id="openProjectTf" editable="false" prefWidth="262.0" promptText="Open a Project" styleClass="my-cbx">
+          <stylesheets>
+            <URL value="@packager.css" />
+          </stylesheets>
+        </TextField>
+      </children>
+    </HBox>
+    <HBox id="HBox" alignment="CENTER" layoutY="318.0" prefWidth="428.0" spacing="5.0" AnchorPane.rightAnchor="114.0">
+      <children>
+        <Button alignment="CENTER" mnemonicParsing="false" onAction="#openNewProject" styleClass="my-buttons" text="Open" HBox.hgrow="NEVER">
+          <font>
+            <Font size="16.0" fx:id="x1" />
+          </font>
+          <stylesheets>
+            <URL value="@packager.css" />
+          </stylesheets>
+          <HBox.margin>
+            <Insets left="50.0" right="50.0" fx:id="x2" />
+          </HBox.margin>
+        </Button>
+        <Button alignment="CENTER" cancelButton="true" font="$x1" mnemonicParsing="false" onAction="#cancelOpenDiag" styleClass="my-buttons" text="Cancel" HBox.hgrow="NEVER" HBox.margin="$x2">
+          <stylesheets>
+            <URL value="@packager.css" />
+          </stylesheets>
+        </Button>
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="bytemanPkg" default="deploy" basedir="..">
+	<echo>basedir=${basedir}</echo>
+	<property name="build" value="bin" />
+	<property name="dist" value="dist" />
+	<property name="src" value="src" />
+	<property name="projet" value="bytemanPkg" />
+	<property name="verBtm" value="2.1.4.1" />
+
+
+	<property name="deploy" value="C:/opt/bytemanPkg" />
+	<available property="office" file="C:/opt/bytemanPkg" />
+
+
+
+	<target name="unzipZip">
+		<delete dir="${basedir}/unzipZip/byteman" />
+
+		<mkdir dir="${basedir}/unzipZip/byteman" />
+
+
+		<unzip src="${basedir}/lib/byteman-${verBtm}.jar" dest="${basedir}/unzipZip/byteman" overwrite="true" />
+
+
+		<delete file="${basedir}/lib/mypreparebyteman.jar">
+
+		</delete>
+		<delete file="${basedir}/lib/mybasebyteman.jar" />
+		<copy tofile="${basedir}/lib/mypreparebyteman.jar" file="${basedir}/lib/byteman-${verBtm}.jar" />
+		<copy tofile="${basedir}/lib/mybasebyteman.jar" file="${basedir}/lib/byteman-${verBtm}.jar" />
+	</target>
+
+	<target name="init" depends="prepare">
+		<path id="byteman.classpath">
+
+
+			<pathelement path="${basedir}/lib/jfxmessagebox-1.1.0.jar" />
+			<pathelement path="${basedir}/lib/jsch-0.1.49.jar" />
+			<pathelement path="C:/opt/jdk1.7.0_40/lib/tools.jar" />
+			<pathelement path="C:/opt/jdk1.7.0_40/jre/lib/jfxrt.jar" />
+			<pathelement path="${basedir}/exemple1.jar" />
+			<pathelement path="${basedir}/lib/byteman-${verBtm}.jar" />
+			<pathelement path="${basedir}/lib/bytemancheck.jar" />
+		</path>
+
+
+	</target>
+
+	<target name="compile" depends="init,unzipZip">
+
+		<copy todir="${build}">
+			<fileset dir="${basedir}/src" includes="META-INF/*,jlp/**/*.fxml,jlp/**/*.css">
+			</fileset>
+		</copy>
+
+
+
+		<javac srcdir="${basedir}/src" destDir="${basedir}/${build}" debug="On" classpathref="byteman.classpath" excludes="jlp/**/helper/**/*.java" includes="jlp/**/*.java" source="1.7" target="1.7" verbose="true" fork="true" />
+
+		<javac srcdir="${basedir}/src" destDir="${basedir}/${build}" debug="On" classpathref="byteman.classpath" includes="jlp/**/helper/**/*.java" source="1.6" target="1.6" verbose="true" fork="true" />
+
+		<javac srcdir="${basedir}/src" destDir="${basedir}/${build}" debug="On" classpathref="byteman.classpath" includes="test/**/*.java" source="1.6" target="1.6" verbose="true" fork="true" />
+
+		<jar destfile="${basedir}/bytemanPkg.jar" basedir="${basedir}/${build}" excludes="jlp/**/helper/**/*.class" includes="jlp/**/*.class,jlp/**/*.fxml,jlp/**/*.css">
+			<manifest>
+				<attribute name="Built-By" value="JL PASTUREL" />
+
+				<attribute name="Main-Class" value="jlp.byteman.packager.Packager" />
+
+			</manifest>
+
+
+		</jar>
+
+
+		<jar destfile="${basedir}/lib/helperPkg.jar" basedir="${basedir}/${build}" includes="jlp/**/helper/**/*.class" />
+		<jar destfile="${basedir}/testPkg.jar" basedir="${basedir}/${build}" includes="test/**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="JL PASTUREL" />
+
+				<attribute name="Main-Class" value="test.package1.package2.Main" />
+
+			</manifest>
+
+
+		</jar>
+	</target>
+
+	<target name="deploy" depends="compile">
+
+
+
+
+		<!--Creation archive complete mybyteman.jar-->
+		<zip destfile="${basedir}/lib/mypreparebyteman.jar" update="true" basedir="${basedir}/${build}" includes="jlp/byteman/helper/**/*.class" />
+
+		<zip destfile="${basedir}/lib/mybasebyteman.jar" update="true" basedir="${basedir}/${build}" includes="jlp/byteman/helper/sizeof/*.class,jlp/byteman/helper/utils/*.class,jlp/byteman/helper/tools/*.class" />
+		<zip destfile="${basedir}/lib/mybasebyteman.jar" update="true" basedir="${basedir}/${build}" includes="jlp/byteman/helper/MyHelper.class" />
+		<zip destfile="${basedir}/lib/mybasebyteman.jar" update="true" basedir="${basedir}/src" includes="META-INF/*.MF" />
+		<zip destfile="${basedir}/lib/mypreparebyteman.jar" update="true" basedir="${basedir}/src" includes="META-INF/*.MF" />
+
+		<copy tofile="${deploy}/lib/mypreparebyteman.jar" file="${basedir}/lib/mypreparebyteman.jar" />
+		<copy todir="${deploy}">
+			<fileset dir="${basedir}" includes="bytemanPkg.jar,scripts/*.*,config/*.*,lib/*.jar,templates/**/*.*,manuals/*.pdf,javadoc/**/*.*,licenses/**/*.*">
+			</fileset>
+		</copy>
+
+		<zip destfile="${basedir}/bytemanPkg.zip" update="true" basedir="${deploy}/.." includes="bytemanPkg/**/*.*" />
+
+	</target>
+
+
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build}" />
+		<property name="deploy" value="C:/opt/bytemanPkg" />
+		<property name="eclipse" value="C:/opt/eclipse" />
+		<echo>eclipse=${eclipse}</echo>
+	</target>
+
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+
+		<!--delete>
+			<fileset dir="${basedir}" includes="**/*.class" />
+		</delete-->
+	</target>
+
+
+
+
+
+
+
+
+</project>
